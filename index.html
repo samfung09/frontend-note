@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        ul, li{
+            list-style: none;
+        }
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+        }
+
+        #sidebar {
+            width: 280px;
+            background: #333333;
+        }
+        .menu-root{
+            text-indent: 1em;
+        }
+        .menu-root a{
+            color: #cccccc;
+            line-height: 32px;
+            text-decoration: none;
+            display: block;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        .menu-sub{
+            background-color: #1b1e1f;
+            text-indent: 2em;
+            height: 0px;
+            overflow: hidden;
+            transition: all 0.5s;
+        }
+        .sidebar-link{
+            font-size: 18px;
+        }
+        .menu-root .link-active{
+            color: #41b783;
+            font-weight: bold;
+        }
+        #content-wrapper {
+            flex-grow: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="sidebar">
+        <ul class="menu-root">
+            <li>
+                <a href="#" class="sidebar-link">CSS</a>
+                <ul class="menu-sub">
+                    <li>
+                        <a href="https://www.runoob.com/w3cnote/flex-grammar.html" class="section-link">flex</a>
+                    </li>
+                    <li>
+                        <a href="#" class="section-link">动画</a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/samfung/p/12319625.html" class="section-link">CSS面试题</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" class="sidebar-link">JS</a>
+                <ul class="menu-sub">
+                    <li>
+                        <a href="https://blog.csdn.net/samfung09/article/details/102180688" class="section-link">ajax</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" class="sidebar-link">Node.js</a>
+                <ul class="menu-sub">
+                    <li>
+                        <a href="https://blog.csdn.net/samfung09/article/details/102557812" class="section-link">爬取百度图片</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" class="sidebar-link">GitHub</a>
+                <ul class="menu-sub">
+                    <li>
+                        <a href="https://blog.csdn.net/samfung09/article/details/80153554" class="section-link">几句git语句提交远程仓库</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div id="content-wrapper">
+        <iframe id="iframe" width="100%" height="100%" frameborder="0"
+            src=""></iframe>
+    </div>
+    <script>
+        var iframe = document.getElementById('iframe');
+        document.querySelectorAll('a').forEach(item => {
+            item.addEventListener('click', function(e){
+                e.preventDefault();
+                
+                // iframe地址切换
+                this.getAttribute('href') !== '#' ? iframe.src = this.href : null;
+
+                var ul = this.nextElementSibling;
+                if(ul){
+                    document.querySelectorAll('.sidebar-link').forEach(item => {
+                        item.classList.remove('link-active');
+                    })
+                    // 其他ul隐藏
+                    document.querySelectorAll('.menu-sub').forEach(item => {
+                        item.style.height = '0px';
+                        item.querySelectorAll('.section-link').forEach(link => {
+                            link.classList.remove('link-active');
+                        })
+                    })
+                    ul.style.height = ul.firstElementChild.clientHeight * ul.children.length + 'px';
+                    console.dir(ul);
+                }else{
+                    this.parentNode.parentNode.querySelectorAll('.section-link').forEach(item => {
+                        item.classList.remove('link-active');
+                    })
+                }
+                this.classList.add('link-active');
+            })
+        })
+
+    </script>
+</body>
+
+</html>
