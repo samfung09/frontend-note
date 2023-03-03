@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        /**
+         * 判断数据类型函数封装
+         * @param {date} data
+         * @param {string} typeStr
+         * @returns {boolean}
+         */
+        function dataTypeof(data, typeStr){
+            // 如果 typeof data 为 object ，则用Object.prototype.toString.call来判断
+            if(typeof(data) === 'object'){
+                let reg = new RegExp("\\b(" + typeStr + ")]$", "i");
+                return reg.test(Object.prototype.toString.call(data));
+            }else{// 一般基本数据类型用 typeof 即可
+                return typeStr === typeof(data);
+            }
+        }
+
+        
+    </script>
+</body>
+</html>

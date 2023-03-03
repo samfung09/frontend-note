@@ -1,146 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        * {
+        *{
             margin: 0;
             padding: 0;
         }
-        ul, li{
-            list-style: none;
-        }
-        html, body {
+        html, body, #container{
             width: 100%;
             height: 100%;
         }
-
-        body {
+        /* #container{
+            width: 100%;
+            height: 100%;
+            background: #cccccc;
+            overflow: hidden;
+        } */
+        #container{
             display: flex;
+            overflow: hidden;
         }
-
-        #sidebar {
-            width: 280px;
-            background: #333333;
+        .column{
+            flex: 2.5;
+            display: flex;
+            flex-direction: column;
+            transition: .3s;
         }
-        .menu-root{
-            text-indent: 1em;
+        .column:nth-child(2){
+            flex: 3;
         }
-        .menu-root a{
-            color: #cccccc;
-            line-height: 32px;
-            text-decoration: none;
+        .column:nth-child(3){
+            flex: 4.5;
+        }
+        .box{
+            flex: 2.5;
+            /* border: 1px blue solid; */
+            text-align: center;
+            line-height: 200px;
+            font-size: 30px;
+            color: white;
+            transition: .3s;
+        }
+        /* 垂直居中 */
+        /* .box::before{
+            content: '';
+            display: inline-block;
+            vertical-align: middle;
+            height: 100%;
+        } */
+        .box:hover{
+            font-size: 50px;
+        }
+        /* .box:nth-child(2){
+            flex: 3;
+        }
+        .box:nth-child(3){
+            flex: 4.5;
+        } */
+        .box a{
             display: block;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
+            text-decoration: none;
+            color: white;
         }
-        .menu-sub{
-            background-color: #1b1e1f;
-            text-indent: 2em;
-            height: 0px;
-            overflow: hidden;
-            transition: all 0.5s;
+        #ps{
+            background-color: #50BFF7;
+            background-image: url('https://static.runoob.com/images/mix/smiley.gif');
+            background-repeat: no-repeat;
+            /* background-attachment: fixed; */
+            background-position: center;
         }
-        .sidebar-link{
-            font-size: 18px;
+        #ai{
+            background-color: #FF7D00;
         }
-        .menu-root .link-active{
-            color: #41b783;
-            font-weight: bold;
+        #js{
+            background-color: #F1BF26;
         }
-        #content-wrapper {
-            flex-grow: 1;
+        #css{
+            background-color: #0573C3;
+        }
+        #vue{
+            background-color: #41B785;
+        }
+        #node{
+            background-color: #BEE25E;
+        }
+        #android{
+            background-color: #3EDA86;
+        }
+        #c{
+            background-color: #00739F;
+        }
+        #others{
+            background-color: #F272FD;
         }
     </style>
 </head>
-
 <body>
-    <div id="sidebar">
-        <ul class="menu-root">
-            <li>
-                <a href="#" class="sidebar-link">CSS</a>
-                <ul class="menu-sub">
-                    <li>
-                        <a href="https://www.runoob.com/w3cnote/flex-grammar.html" class="section-link">flex</a>
-                    </li>
-                    <li>
-                        <a href="https://www.cnblogs.com/samfung/p/12319625.html" class="section-link">CSS面试题</a>
-                    </li>
-                    <li>
-                        <a href="https://blog.csdn.net/samfung09/article/details/82911885" class="section-link">一些css动画效果</a>
-                    </li>
-                    <li>
-                        <a href="https://blog.csdn.net/samfung09/article/details/104024958" class="section-link">圆形进度条动画</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="#" class="sidebar-link">JS</a>
-                <ul class="menu-sub">
-                    <li>
-                        <a href="https://blog.csdn.net/samfung09/article/details/102180688" class="section-link">ajax</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="#" class="sidebar-link">Node.js</a>
-                <ul class="menu-sub">
-                    <li>
-                        <a href="https://blog.csdn.net/samfung09/article/details/102557812" class="section-link">爬取百度图片</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="#" class="sidebar-link">GitHub</a>
-                <ul class="menu-sub">
-                    <li>
-                        <a href="https://www.cnblogs.com/samfung/p/8981379.html" class="section-link">git简单入门</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-    <div id="content-wrapper">
-        <iframe id="iframe" width="100%" height="100%" frameborder="0"
-            src=""></iframe>
-    </div>
+    <!-- <div id="container"> -->
+        <div id="container">
+            <div class="column">
+                <div id="ps" class="box">
+                    <a href="js-note.html">Photoshop</a>
+                </div>
+                <div id="ai" class="box">Illustrator</div>
+                <div id="js" class="box">JavaScript</div>
+            </div>
+            <div class="column">
+                <div id="css" class="box">CSS</div>
+                <div id="vue" class="box">VUE</div>
+                <div id="node" class="box">Node.js</div>
+            </div>
+            <div class="column">
+                <div id="android" class="box">Android</div>
+                <div id="c" class="box">C语言</div>
+                <div id="others" class="box">others</div>
+            </div>
+        </div>
+    <!-- </div> -->
     <script>
-        var iframe = document.getElementById('iframe');
-        document.querySelectorAll('a').forEach(item => {
-            item.addEventListener('click', function(e){
-                e.preventDefault();
-                
-                // iframe地址切换
-                this.getAttribute('href') !== '#' ? iframe.src = this.href : null;
+        // 纵列宽flex都有那几个值
+        var flexArr = ["2.5", "3.3", "4.2"];
+        var columns = document.querySelectorAll('.column');
+        // 选中列的index组（随机数）
+        var wArr = [];
+        var flexArrIndexW;
+        var hArr = [];
+        var flexArrIndexH;
 
-                var ul = this.nextElementSibling;
-                if(ul){
-                    document.querySelectorAll('.sidebar-link').forEach(item => {
-                        item.classList.remove('link-active');
-                    })
-                    // 其他ul隐藏
-                    document.querySelectorAll('.menu-sub').forEach(item => {
-                        item.style.height = '0px';
-                        item.querySelectorAll('.section-link').forEach(link => {
-                            link.classList.remove('link-active');
-                        })
-                    })
-                    ul.style.height = ul.firstElementChild.clientHeight * ul.children.length + 'px';
-                    console.dir(ul);
-                }else{
-                    this.parentNode.parentNode.querySelectorAll('.section-link').forEach(item => {
-                        item.classList.remove('link-active');
-                    })
-                }
-                this.classList.add('link-active');
+        setBoxWidth(columns);
+        setInterval(() => {
+            setBoxWidth(columns);
+        }, 3000);
+
+        function setBoxWidth(columns){
+            for(var i = 0; i < columns.length; i++){
+                judgeW(i);
+                setBoxHeight(columns[i]);
+                hArr = [];
+            }
+            wArr = [];
+        }
+
+        function setBoxHeight(column){
+            column.querySelectorAll('.box').forEach(function(box){
+                judgeH(box);
             })
-        })
+        }
 
+        function randomInt(min, max){
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function compareNum(arr, num){
+            return arr.some(function(item){
+                return item == num;
+            })
+        }
+
+        function judgeW(i){
+            console.log(i);
+            flexArrIndexW = randomInt(0, 2);
+            if(compareNum(wArr, flexArrIndexW)){
+                judgeW(i);
+            }else{
+                wArr.push(flexArrIndexW);
+                columns[i].style.flex = flexArr[flexArrIndexW];
+            }
+        }
+
+        function judgeH(box){
+            flexArrIndexH = randomInt(0, 2);
+            if(compareNum(hArr, flexArrIndexH)){
+                judgeH(box);
+            }else{
+                hArr.push(flexArrIndexH);
+                box.style.flex = flexArr[flexArrIndexH];
+            }
+        }
     </script>
 </body>
-
 </html>

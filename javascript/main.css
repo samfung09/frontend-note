@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#container {
+    width: 100%;
+    position: relative;
+}
+
+#nav {
+    /* width: 100px; */
+    width: 20%;
+    height: 100vh;
+    /* min-height: 600px; */
+    background: red;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#page {
+    /* width: 100px; */
+    width: 80%;
+    /* height: 100px; */
+    min-height: 600px;
+    background: blue;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+iframe {
+    display: block;
+    /* iframes are inline by default */
+    background: #000;
+    border: none;
+    /* Reset default border */
+    height: 100vh;
+    /* Viewport-relative units */
+    width: 100%;
+}
