@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="inp">
+    <button id="btn">解析</button>
+    <script>
+        let inp = document.getElementById('inp');
+        let btn = document.getElementById('btn');
+
+        btn.onclick = function(){
+            // console.log('input:', inp.value);
+            if(!inp.value || !/https:\/\/v.douyin.com/.test(inp.value)){
+                alert('请输入正确的抖音链接');
+                return;
+            }
+            // console.log('输入正确');
+            let dyLink = /https:\/\/v.douyin.com.+?\//.exec(inp.value)[0];
+            // console.log(dyLink);
+
+            let xhr = new XMLHttpRequest();
+            xhr.open('get', 'https://api.vvhan.com/api/short?url=' + dyLink);
+            xhr.onreadystatechange = function(){
+                // console.log(xhr.readyState);
+                // console.log(xhr.status);
+                // console.log(JSON.parse(xhr.responseText));
+                if(xhr.readyState === 4 && /(2|3)\d{2}/.test(xhr.status)){
+                    let resData = JSON.parse(xhr.responseText);
+                    window.open(resData.url);
+                }
+            }
+            xhr.send();
+        }
+    </script>
+</body>
+</html>

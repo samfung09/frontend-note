@@ -1,3 +1,8 @@
+---
+html:
+    toc: true
+---
+
 ## Number() 将其他数据类型转成数字
 >**new Number(value) / Number(value) 创建数字**
 
