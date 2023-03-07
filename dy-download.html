@@ -8,30 +8,39 @@
 </head>
 <body>
     <input type="text" id="inp">
-    <button id="btn">解析</button>
+    <button id="btn1" data-tab="yes" onclick="btnClick.call(this)">有水印</button>
+    <button id="btn2" data-tab="no" onclick="btnClick.call(this)">无水印</button>
+    <script src="tool/base64.js"></script>
     <script>
         let inp = document.getElementById('inp');
-        let btn = document.getElementById('btn');
 
-        btn.onclick = function(){
+        function btnClick(){
+            // console.dir(this);
+            // console.log(this.dataset.tab);
+
             // console.log('input:', inp.value);
             if(!inp.value || !/https:\/\/v.douyin.com/.test(inp.value)){
                 alert('请输入正确的抖音链接');
                 return;
             }
-            // console.log('输入正确');
+            
             let dyLink = /https:\/\/v.douyin.com.+?\//.exec(inp.value)[0];
             // console.log(dyLink);
+            let base64 = new Base64();
 
             let xhr = new XMLHttpRequest();
-            xhr.open('get', 'https://api.vvhan.com/api/short?url=' + dyLink);
+            // 有水印无水印请求地址不同
+            let getUrl = this.dataset.tab === 'yes' ? 'https://api.vvhan.com/api/short?url=' + dyLink : 'https://www.mxnzp.com/api/douyin/video?url=' + base64.encode(dyLink) + '&app_id=bkinqpqhwvjilnbj&app_secret=NWUzM0NaNmh3MmlpSW9TNFE5RlNDZz09';
+            xhr.open('get', getUrl);
             xhr.onreadystatechange = function(){
-                // console.log(xhr.readyState);
-                // console.log(xhr.status);
-                // console.log(JSON.parse(xhr.responseText));
+                
                 if(xhr.readyState === 4 && /(2|3)\d{2}/.test(xhr.status)){
-                    let resData = JSON.parse(xhr.responseText);
-                    window.open(resData.url);
+                    let resData = JSON.parse(xhr.responseText);                    
+                    let videoUrl = resData.url || resData.data.url;
+                    // 清空输入框
+                    inp.value = '';
+                    // 新页面打开下载链接
+                    window.open(videoUrl);
                 }
             }
             xhr.send();
