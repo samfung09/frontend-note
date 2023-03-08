@@ -26,6 +26,7 @@
             
             let dyLink = /https:\/\/v.douyin.com.+?\//.exec(inp.value)[0];
             // console.log(dyLink);
+            // 无水印需要base64解析
             let base64 = new Base64();
 
             let xhr = new XMLHttpRequest();
@@ -36,11 +37,13 @@
                 
                 if(xhr.readyState === 4 && /(2|3)\d{2}/.test(xhr.status)){
                     let resData = JSON.parse(xhr.responseText);                    
-                    let videoUrl = resData.url || resData.data.url;
+                    // let videoUrl = resData.url || resData.data.url;
                     // 清空输入框
                     inp.value = '';
                     // 新页面打开下载链接
-                    window.open(videoUrl);
+                    // window.open(videoUrl);
+                    console.log(resData);
+                    location.href = 'https://v3-web.douyinvod.com/7f07d506b01401392cc02b9006277489/6408623a/video/tos/cn/tos-cn-ve-15c001-alinc2/oI9XEAbLABsU0QwjFjCeDoF2IBrbuBKaDgnOAe/?a=6383&ch=5&cr=3&dr=0&lr=all&cd=0%7C0%7C0%7C3&cv=1&br=1489&bt=1489&cs=0&ds=3&ft=7yV4ZBo7UUmfAmdF_1TD1YswHAX1tGP5Hrq9eFzD30uO12nz&mime_type=video_mp4&qs=0&rc=PGY5NDZpODtkNDxpMzZoaEBpam5mZDM6Zjk2aTMzNGkzM0BiY2JjLy0tNjIxMS1jMTAvYSMvX21zcjRvaGFgLS1kLS9zcw%3D%3D&l=202303081723440E215C158C99515ED3BC&btag=8000';
                 }
             }
             xhr.send();
