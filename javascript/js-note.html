@@ -100,6 +100,9 @@
                     <li class="tab">
                         <a href="regexp.html" target="view_frame">RegExp正则表达式</a>
                     </li>
+                    <li class="tab">
+                        <a href="iframe.html" target="view_frame">iframe</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -118,6 +121,7 @@
                 
                 console.log(this.href);
                 // iframe.src = this.href;
+                // 这样不产生历史记录。iframe标签name属性和a标签target属性方式会产生历史记录，回退a标签样式错乱
                 iframe.contentWindow.location.replace(this.href);
 
                 aList.forEach(item => {
